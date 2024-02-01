@@ -624,13 +624,21 @@ cmp.setup {
 }
 
 -- [[ Configure Neoscroll ]]
-require('neoscroll').setup()
+require('neoscroll').setup({
+  post_hook = function(info) if info == 'centercursor' then vim.cmd('normal! zz') end end,
+})
 local t = {}
+t['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '350', 'sine', [['centercursor']] } }
+t['<C-d>'] = { 'scroll', { 'vim.wo.scroll', 'true', '350', 'sine', [['centercursor']] } }
+
 -- Mappings below are a bit buggy and can cause nvim to crash
 -- t['gg']    = {'scroll', {'-2*vim.api.nvim_buf_line_count(0)', 'true', '1', '5'}}
 -- t['G']     = {'scroll', {'2*vim.api.nvim_buf_line_count(0)', 'true', '1', '5'}}
 
 require('neoscroll.config').set_mappings(t)
+
+-- [[ Configure Leap ]]
+require('leap').create_default_mappings()
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
