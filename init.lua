@@ -532,7 +532,7 @@ local servers = {
   -- clangd = {},
   -- gopls = {},
   pyright = {},
-  -- rust_analyzer = {},
+  rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
@@ -622,8 +622,6 @@ cmp.setup {
     { name = 'path' },
   },
 }
-
--- [[ Configure Leap ]]
 
 -- [[ WSL Clipboard Configuration ]]
 local in_wsl = os.getenv('WSL_DISTRO_NAME') ~= nil
