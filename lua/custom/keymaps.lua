@@ -1,5 +1,8 @@
 local map = vim.keymap.set
 -- [[ Kickstart keymaps ]]
+-- Keymaps for running scripts, programs, etc.
+map({'n', 'v'}, '<F9>', '<cmd>!python3 %<cr>', { desc = "Run python3 on current buffer", silent = true })
+
 -- See `:help vim.keymap.set()`
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 

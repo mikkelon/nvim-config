@@ -52,7 +52,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -77,7 +77,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -226,7 +226,7 @@ require('lazy').setup({
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
+  require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -243,7 +243,7 @@ require('lazy').setup({
 -- NOTE: You can change these options as you wish!
 
 -- My own options
-vim.o.rnu = true -- Relative numbers
+vim.o.rnu = true     -- Relative numbers
 vim.o.scrolloff = 8; -- Make buffer start scrolling earlier
 
 -- Set highlight on search
@@ -531,7 +531,7 @@ require('mason-lspconfig').setup()
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
@@ -625,20 +625,28 @@ cmp.setup {
 
 -- [[ Configure Neoscroll ]]
 require('neoscroll').setup({
-  post_hook = function(info) if info == 'centercursor' then vim.cmd('normal! zz') end end,
+  pre_hook = function(info) if info == 'centercursor' then vim.api.nvim_feedkeys('<S-M>', 'n', true) end end,
 })
 local t = {}
 t['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '350', 'sine', [['centercursor']] } }
 t['<C-d>'] = { 'scroll', { 'vim.wo.scroll', 'true', '350', 'sine', [['centercursor']] } }
 
--- Mappings below are a bit buggy and can cause nvim to crash
--- t['gg']    = {'scroll', {'-2*vim.api.nvim_buf_line_count(0)', 'true', '1', '5'}}
--- t['G']     = {'scroll', {'2*vim.api.nvim_buf_line_count(0)', 'true', '1', '5'}}
-
 require('neoscroll.config').set_mappings(t)
 
 -- [[ Configure Leap ]]
 require('leap').create_default_mappings()
+
+-- [[ WSL Clipboard Configuration ]]
+local in_wsl = os.getenv('WSL_DISTRO_NAME') ~= nil
+
+if in_wsl then
+  vim.g.clipboard = {
+    name = 'wsl.clipboard',
+    copy = { ["+"] = { "clip.exe" }, ["*"] = { "clip.exe" } },
+    paste = { ["+"] = { "nvim_paste" }, ["*"] = { "nvim_paste" } },
+    cache_enabled = true
+  }
+end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
