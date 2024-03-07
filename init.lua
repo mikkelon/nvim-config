@@ -624,7 +624,6 @@ cmp.setup {
 }
 
 -- [[ Configure Leap ]]
-require('leap').create_default_mappings()
 
 -- [[ WSL Clipboard Configuration ]]
 local in_wsl = os.getenv('WSL_DISTRO_NAME') ~= nil
