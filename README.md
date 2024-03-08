@@ -6,14 +6,7 @@ Welcome to my personal Neovim configuration! This repository serves as both a ba
 
 - **Customization**: Built upon kickstart.nvim, my configuration includes additional plugins and tailored settings to enhance the editing experience.
 - **Enhanced Functionality**: Incorporates plugins such as nvim-neo-tree/neo-tree.nvim for file tree navigation, karb94/neoscroll.nvim for smooth scrolling and ggandor/leap.nvim for enhanced navigation.
-- **Custom Keymaps**: I have added custom keymaps to improve productivity, which are organized in a separate file called "keymaps.lua".
-
-### Installed Plugins
-
-- [nvim-neo-tree/neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
-- [karb94/neoscroll.nvim](https://github.com/karb94/neoscroll.nvim)
-- [ggandor/leap.nvim](https://github.com/ggandor/leap.nvim)
-- [iamcco/markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
+- **Custom Keymaps**: I have added custom keymaps to improve productivity, which are organized in a separate file called "keymaps.lua"
 
 ### Installation (Linux)
 
