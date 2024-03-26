@@ -28,7 +28,7 @@ git clone https://github.com/mikkelovergaard/nvim-config.git %APPDATA%\nvim
 
 ### Clipboard sync between Windows and WSL
 If you are running Nvim in a WSL environment, it is possible to 'sync' the clipboard between Nvim and Windows.
-For this to work, the following script should be available in your $PATH:
+For this to work, the following script should be available in your $PATH as ```nvim_paste```:
 ```Bash
 #!/bin/sh
 
